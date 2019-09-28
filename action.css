@@ -1,0 +1,147 @@
+h1, h2, div{
+    margin: 0;
+    padding: 10px;
+}
+
+html{
+    height: 100%;
+}
+
+body{
+    background-image: url(background6.png);
+    margin: 0;
+    margin-left: 150px;
+    margin-right: 150px;
+    padding: 0;	
+    height: 100%
+}
+
+p{
+    padding-left: 10px;
+}
+
+div{
+    font-size: 25px;
+}
+
+#header{ 
+    background-color: #5085a5;
+    text-align: left;
+    font-family: monospace;
+    color: #3c3c3c;
+    font-size: 16px;
+    padding-left: 15px;
+    overflow: hidden;
+}
+
+#Top{
+    background-color: #8fc1e3;
+    font-size: 45px;
+    font-family: Arial;
+    font-weight: bold ;
+    color: #3c3c3c;
+    height: 60px;
+    padding-top: 20px;
+    border-bottom: 2px solid #5085a5;
+    overflow: hidden;
+    padding-left: 30px;
+}
+
+#Wrapper{
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    }
+
+#content{
+    padding-left: 30px;
+}
+
+#rightsidebar{
+    background-color: #8fc1e3;
+    float: right;
+    height: 100%;
+    border-left: 0px solid #6E9099;
+    width: 30%;
+    
+}
+
+#leftsidebar{
+    background-color: #5D9BC1;
+    float: left;
+    width: 6%;
+    height: 100%;
+}
+
+#main{
+    background-color: #EEF8FF;
+    min-height: 100%;
+    color: #490a0a;
+    border-left: 0px solid #8fc1e3;
+    font-family: arial;
+    min-width: 70%;
+    padding-left: 150px;
+    padding-top: 20px;
+}
+
+#result-table{
+    margin-top: 10px;
+    border-collapse: collapse;
+    border: solid 4px #2B617B;
+    font-size: 15px;
+    margin-bottom: -10px;
+}
+#result-table td, #result-table th{
+    border: solid 3px #2B617B;
+    text-align: center;
+    width: 130px;
+    height: 35px;
+}
+#result-table th{
+    background-color: #A8CFE8;
+    font-weight: bold;
+}
+#result-table td{
+    background-color: #CCF6FA;
+}
+#result-table th:last-of-type{
+    width: 200px;
+}
+.graph{
+    width: 100%;
+    border: 2px solid #78A4C0;
+}
+
+button.retry{
+    border: 1px solid #A6C7E2;
+    background-color: #E0EFFB;
+    width: 200px;
+    height: 40px;
+    transition: 0.5s;
+    font-size: 15px;
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+button.retry:hover{
+    background-color: #B4D7F3;
+    border: 1px solid #767997;
+    transition: 1s;
+}
+#footer{ 
+    background-color: #5085a5;
+    font-size: 20px;
+    font-family: monospace;
+}
+
+.variant{
+    text-align: right;
+    font-size: inherit;
+    float: right;
+}
+
+.step>span{
+    font-size: 30px;
+    font-weight: bold;
+}		

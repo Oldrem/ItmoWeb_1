@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Web lab1</title>
+	<link rel="stylesheet" href="index.css">
+	<style>
+	@media (min-width: 1450px) {
+		#Top {
+			font-size: 45px;
+		}
+		#Wrapper {
+			height: 90px;
+		}
+	}
+	@media (max-width: 1450px) {
+		#Top {
+			font-size: 35px;
+		}
+		#Wrapper {
+		height: 70px;
+	}
+	}	
+	</style>
+		<script type="text/javascript" src="jquery.js"></script>
+		<script language="javascript" type="text/javascript">
+		function setPicture(picture) {
+			document.getElementById("dummy2").innerHTML=
+			"<img src=\""+picture+"\" alt=\"Здесь должен быть график\" class=\"graph\" onclick=\"playSound(\'img/good_sound.mp3\')\">";
+			}
+
+
+		$(document).ready(function() {
+			var textValid;
+			var checkboxesValid;
+			var buttonClicked;
+			
+			$(":input[type='checkbox']").change(function() {
+					var count = $(':checkbox:checked').length;
+					checkboxesValid = true;
+					if (count == 0) {
+						checkboxesValid = false;
+						$(':input[type="submit"]').prop('disabled', true);
+						document.getElementById("checkbox-error").innerHTML="Не выставлен флажок.";
+						$('#checkbox-error').removeClass("error").addClass("error_show");
+					}
+					else {
+						if (textValid && buttonClicked) {$(':input[type="submit"]').prop('disabled', false);}
+						$('#checkbox-error').removeClass("error_show").addClass("error");
+					}
+			});
+
+			$('#text').on('input', function() {
+				textValid = true;
+				var input=$(this);
+				$(this).val($(this).val().replace(/,/g, '.'));
+				var text = input.val().trim();
+				if(checkInput(text)){
+					if (checkboxesValid && buttonClicked) {$(':input[type="submit"]').prop('disabled', false);}
+					input.removeClass("invalid").addClass("valid");
+					$('#text-error').removeClass("error_show").addClass("error");
+					}
+				else{
+					textValid = false;
+					$(':input[type="submit"]').prop('disabled', true);
+					input.removeClass("valid").addClass("invalid");
+					$('#text-error').removeClass("error").addClass("error_show");
+					}
+		});
+			$(':input[type="button"]').on("click", function () {
+			buttonClicked = true;
+			if (textValid && checkboxesValid) {$(':input[type="submit"]').prop('disabled', false);}
+			$(':input[type="button"]').css('background-color','#92DDD8');	
+			$(':input[name="buttonvalue"]').attr("value",$(this).attr("value"));
+			$(':input[type="button"]').not(this).css('background-color', '#E0EFFB');
+
+		});
+			$(':input[type="submit"]').on("click", function () {
+			($('#text').val(($('#text').val()*1).toString()));
+		});
+		});
+			
+
+		function checkInput(number){
+			var i = parseFloat(number);
+			var reg =/^-?\d*[.,]?\d*$/;
+			// var reg2 =/^-?(3,)+[1-9]*$/;
+			if (number === "") {
+				document.getElementById("text-error").innerHTML="Данное поле обязательно для ввода.";
+				return false;
+			}
+			if (reg.test(number)){
+				if (isNaN(i) || i < -3 || i > 3){
+					document.getElementById("text-error").innerHTML="Число не входит в диапазон.";
+					return false;			
+				}
+				else {return true;}
+			}
+			else {
+				document.getElementById("text-error").innerHTML="Нужно ввести число [-3:3].";
+				return false;
+			}
+		}
+</script>
+</head>
+<body>
+<div id="header">Лабораторная работа №1.
+Щербаков В.Ю. P3214. <span class="variant"> Вариант 214023.</span></div>
+<div id="Wrapper">
+	<div id="leftsidebar">	
+	</div>
+	<div id="Top">
+	ПОПАДАЕТ ЛИ ТВОЯ ТОЧКА В ЭТОТ ГРАФИК?
+	</div>
+</div>
+<div id="Wrapper2">
+	<div id="leftsidebar2">
+	</div>
+	<div id="main">
+		<form action="action.php" method="get" id="form">
+			<div class="step">
+				<span>Шаг первый: выбери Х.</span></br>
+				<img src="img/line.png" alt="line" class="line">
+				<div id="checkboxes">
+					<input type="checkbox" name="x[]" value="-4"/>
+					<input type="checkbox" name="x[]" value="-3"/>
+					<input type="checkbox" name="x[]" value="-2"/>
+					<input type="checkbox" name="x[]" value="-1"/>
+					<input type="checkbox" name="x[]" value="0"/> 
+					<input type="checkbox" name="x[]" value="1"/>
+					<input type="checkbox" name="x[]" value="2"/> 
+					<input type="checkbox" name="x[]" value="3"/>	
+					<input type="checkbox" name="x[]" value="4"/>
+					<span class="error" id="checkbox-error"></span></br>
+				</div>
+			</div>
+			<div class="step">
+				<span>Шаг второй - выбери Y.</span></br>
+				Всего лишь введи число от -3 до 3 в это поле!</br>
+				<input type="text" name="Y" id="text" placeholder="от -3 до 3"/>
+				<span class="error" id="text-error"></span>
+			</div>
+				<div class="step">
+					<span>Шаг третий - выбери R.</span></br>
+					Просто нажми на нужную кнопку!</br>
+					<div id="buttons">
+						<input type="button" class="R" name="z" value="1"/>
+						<input type="button" class="R" name="z" value="1.5"/>
+						<input type="button" class="R" name="z" value="2"/>
+						<input type="button" class="R" name="z" value="2.5"/>
+						<input type="button" class="R" name="z" value="3"/>
+						<input type="hidden" name="buttonvalue" value="123">
+					</div>
+				</div>
+			<input type="submit" name="submit" value="Отправить!" disabled="disabled"/>
+		</form>
+	</div>
+	<div id="rightsidebar">
+	<span id="dummy2"><img src="img/graph.png" alt="Здесь должен быть график" class="graph" onclick="playSound()"></span>
+	</div>
+</div>
+<div id="footer">Copyright &copy;ItmoLabs all rights were broken</div>
+</body>
+</html>
