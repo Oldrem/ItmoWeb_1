@@ -1,8 +1,6 @@
 * {
-    box-sizing: border-box;
-}
-div{
-    margin: 0;
+	box-sizing: border-box;
+	margin: 0;
 }
 html{
     height: 100%;
@@ -14,10 +12,6 @@ body{
     margin-right: 150px;
     padding: 0;	
     height: 100%
-}
-
-p{
-    padding-left: 10px;
 }
 
 div{
@@ -106,12 +100,19 @@ div{
     background: #C3D2DC;
     transition: 1.2s;
 }
+.step>p{
+	padding: 0;
+	font-weight: bold;
+	font-size: 30px;
+	margin-bottom: -25px;
+	margin-top: 5px;
+}
 #checkboxes{
 margin-left: 2px;
 position: relative; 
 overflow: hidden;
 display: block;
-margin-left: 12px;
+margin-left: 16px;
 margin-top: 10px;
 }
 #buttons{
@@ -131,14 +132,14 @@ input[type="text"]{
     border: 0px;
     border-bottom: 2px solid #A6C7E2; 
     background-color:#EEF8FF; 
-    width: 250px;
+    width: 150px;
     height: 20px;
     padding-left: 10px;
     font-size: 15px;
 }
 
 input[type='checkbox']{
-    margin-right:20px;
+    margin-right:24px;
     margin-top: 0;
     padding: 0;
 }
@@ -206,19 +207,19 @@ input[type="button"]:hover, input[type="submit"]:hover{
 }
 .error{
     display: none;
-    margin-left: 10px;
+	margin-left: 10px;
 }		
 
 .error_show{
     color: red;
     margin-left: 10px;
 }
+.character-count{
+	font-size: 15px;
+	color: #759EBF;
+}
 
 input[type="text"]:focus {
     outline:none;
     border-bottom: 2px solid #2A900C;
-}
-.step>span{
-    font-size: 30px;
-    font-weight: bold;
 }

@@ -34,7 +34,7 @@
 			var textValid;
 			var checkboxesValid;
 			var buttonClicked;
-			
+			document.forms["form"]["offset"].value = new Date().getTimezoneOffset();
 			$(":input[type='checkbox']").change(function() {
 					var count = $(':checkbox:checked').length;
 					checkboxesValid = true;
@@ -78,7 +78,25 @@
 			$(':input[type="submit"]').on("click", function () {
 			($('#text').val(($('#text').val()*1).toString()));
 		});
+
+		$("#text").each(function() {
+		var $this = $(this);
+		var maxLength = 16;
+		$this.attr('maxlength', maxLength);
+
+		var el = $("<span class=\"character-count\">" + maxLength + "/16</span>");
+		el.insertAfter($this);
+
+		$this.bind('keyup', function() {
+			var cc = $this.val().length;
+
+			el.text(maxLength - cc+"/16");
 		});
+		});
+		
+
+		});
+		
 			
 
 		function checkInput(number){
@@ -119,7 +137,7 @@
 	<div id="main">
 		<form action="action.php" method="get" id="form">
 			<div class="step">
-				<span>Шаг первый: выбери Х.</span></br>
+				<p>Шаг первый: выбери Х.</p></br>
 				<img src="img/line.png" alt="line" class="line">
 				<div id="checkboxes">
 					<input type="checkbox" name="x[]" value="-4"/>
@@ -135,13 +153,13 @@
 				</div>
 			</div>
 			<div class="step">
-				<span>Шаг второй - выбери Y.</span></br>
+				<p>Шаг второй - выбери Y.</p></br>
 				Всего лишь введи число от -3 до 3 в это поле!</br>
 				<input type="text" name="Y" id="text" placeholder="от -3 до 3"/>
 				<span class="error" id="text-error"></span>
 			</div>
 				<div class="step">
-					<span>Шаг третий - выбери R.</span></br>
+					<p>Шаг третий - выбери R.</p></br>
 					Просто нажми на нужную кнопку!</br>
 					<div id="buttons">
 						<input type="button" class="R" name="z" value="1"/>
@@ -149,7 +167,8 @@
 						<input type="button" class="R" name="z" value="2"/>
 						<input type="button" class="R" name="z" value="2.5"/>
 						<input type="button" class="R" name="z" value="3"/>
-						<input type="hidden" name="buttonvalue" value="123">
+						<input type="hidden" name="buttonvalue" value="1">
+						<input type="hidden" name="offset" value="">
 					</div>
 				</div>
 			<input type="submit" name="submit" value="Отправить!" disabled="disabled"/>

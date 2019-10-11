@@ -7,7 +7,7 @@
 <body>
 	<?php 
 	$BEGIN_MS = microtime(true);
-	date_default_timezone_set("Europe/Moscow");
+	date_default_timezone_set("UTC");
 	if (array_key_exists("offset", $_GET)) {
 		$OFFSET = $_GET["offset"];
 	} else $OFFSET = 0;
@@ -15,10 +15,10 @@
 		$x = $_GET["x"];
 	}
 	if (isset($_GET["Y"])){
-		$Y = $_GET['Y']; 
+		$Y = (float)$_GET['Y']; 
 	}
 	if(isset($_GET['buttonvalue'])){
-		$R=$_GET['buttonvalue'];
+		$R=(float)$_GET['buttonvalue'];
 	}
 	?>
  <div id="Wrapper">
@@ -28,14 +28,13 @@
  РЕЗУЛЬТАТЫ ВЫЧИСЛЕНИЙ.
  </div>
  <div id="rightsidebar">
- <span id="dummy2"><img src="graphh.png" alt="Здесь должен быть график" class="graph" onclick="playSound()"></span>
+ <span id="dummy2"><img src="img/graph.png" alt="Здесь должен быть график" class="graph"></span>
  </div>
  <div id="main">
- Дата: <?= date("d.m.Y, G:i:s", $BEGIN_MS - $OFFSET / 60 * 3600) ?> GMT+3</br>
+ Дата: <?= date("d.m.Y, G:i:s", $BEGIN_MS - $OFFSET / 60 * 3600) ?></br>
  <?php
 	if (array_key_exists("x", $_GET) and array_key_exists("Y", $_GET) and array_key_exists("buttonvalue", $_GET)
-	and (float)$Y >= -3 and (float)$Y <= 3 and ((float)$R == 1 or (float)$R == 1.5 or 
-	(float)$R == 2 or (float)$R == 2.5 or (float)$R == 3)){
+	and $Y >= -3 and $Y <= 3 and ($R == 1 or $R == 1.5 or $R == 2 or $R == 2.5 or $R == 3) and is_numeric($_GET["Y"])){
 		echo "<table id=\"result-table\">
 		<tr><th>X</th><th>Y</th><th>R</th><th>Попаданиe?</th></tr>";
 		$success="";
